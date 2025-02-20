@@ -1,4 +1,4 @@
-Here is my Ruby project that allows you to crawl a list of items of you choice. 
+Here is my Ruby project that allows you to crawl a list of items of you choice from Amazon. 
 
 To run it you need 
 Ruby (>= 2.7)
