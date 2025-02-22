@@ -1,0 +1,42 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - check_opening_hours
+  - list_menu
+  - place_order
+  - who_are_you
+
+actions:
+  - action_check_opening_hours
+  - action_list_menu
+  - action_place_order
+  - action_introduce_bot
+
+slots:
+  day:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: day
+
+responses:
+  utter_introduce_bot:
+    - text: "Hi, I am your restaurant assistant. How can I help you today?"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+  utter_greet:
+    - text: "Hello, How Can I help??"
+
+  utter_goodbye:
+    - text: "See you!"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+entities:
+  - day
