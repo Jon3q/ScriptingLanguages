@@ -1,0 +1,110 @@
+version: "3.1"
+nlu:
+
+  - intent: who_are_you
+    examples: |
+      - Who are you?
+      - What are you?
+      - Tell me about yourself
+      - Can you introduce yourself?
+      - What is your purpose?
+
+  - intent: greet
+    examples: |
+      - Hello
+      - Hi
+      - Hey there
+      - Howdy
+      - Hey!
+      - Good morning
+      - Good evening
+
+  - intent: goodbye
+    examples: |
+      - Goodbye
+      - See you later
+      - Take care
+      - Have a nice day
+      - Bye!
+      - Catch you later
+
+  - intent: list_menu
+    examples: |
+      - What do you have on the menu?
+      - What dishes do you serve?
+      - Do you have pizza?
+      - I’d like to see the menu
+      - Show me what I can order
+      - What’s available today?
+      - Can you list the dishes?
+
+  - intent: place_order
+    examples: |
+      - I’d like to order a pizza
+      - I’ll have a burger without onions
+      - Do you have lasagna? If so, I’d like one
+      - I want a hot dog and tiramisu
+      - Can I get a Caesar salad and grilled salmon?
+      - I’ll take a tomato soup and cheesecake
+      - One pizza Margherita, please
+      - I’d like to order a meal for two
+      - Can I get a recommendation?
+      - I need a vegetarian option, what do you have?
+
+  - intent: check_opening_hours
+    examples: |
+      - What are the opening hours on [Monday](day)?
+      - Are you open on [Sunday](day)?
+      - Is the shop open on [Friday](day)?
+      - Can you tell me the schedule for [Tuesday](day)?
+      - What time do you open on [Saturday](day)?
+      - Until what time are you open on [Thursday](day)?
+      - Are you closed on [Wednesday](day)?
+
+stories:
+- story: user asks for menu
+  steps:
+  - user: |
+      What do you have on the menu?
+    intent: list_menu
+  - action: action_list_menu
+
+- story: user places an order
+  steps:
+  - user: |
+      I’d like to order a pizza
+    intent: place_order
+  - action: action_place_order
+
+- story: user asks about opening hours
+  steps:
+  - user: |
+      What are the opening hours on [Monday](day)?
+    intent: check_opening_hours
+  - action: action_check_opening_hours
+
+- story: user greets and asks for menu
+  steps:
+  - user: |
+      Hello!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Show me the menu
+    intent: list_menu
+  - action: action_list_menu
+
+- story: user greets, places an order, and says goodbye
+  steps:
+  - user: |
+      Hi there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I’d like to order spaghetti carbonara
+    intent: place_order
+  - action: action_place_order
+  - user: |
+      Thanks, bye!
+    intent: goodbye
+  - action: utter_goodbye
